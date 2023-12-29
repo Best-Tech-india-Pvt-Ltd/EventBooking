@@ -21,4 +21,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     post '/signup/event_organizer', to: 'users/registrations#create_event_organizer'
   end
+
+  resources :events
+  resources :bookings
+  get '/customer_booking', to: 'bookings#customer_booking'
 end

@@ -71,5 +71,4 @@ gem 'devise'
 gem 'devise-jwt'
 gem 'fast_jsonapi'
 gem 'pry'
-
-#"eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxZTZhYjBkNC1jOGI0LTQxYmUtOGU1Yi0zOWY1MjE0NjhlNjQiLCJzdWIiOiI1Iiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNzAzNzU1MzE0LCJleHAiOjE3MDM3NTcxMTR9.jFtrkch8MfD20bUsldFs-95FODbFL3ZQOyMteyEDVUs"
+gem 'pundit'

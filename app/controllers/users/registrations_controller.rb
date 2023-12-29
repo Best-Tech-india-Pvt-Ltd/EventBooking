@@ -28,7 +28,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create_event_organizer
     build_resource(sign_up_params)
+
     resource.role = "event_organizer"
+
     resource.save
     yield resource if block_given?
     if resource.persisted?
@@ -43,4 +45,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity
     end
   end
+
+  # private 
+
+  # def respond_with(resource, options={})
+  #  if resource.persisted?
+  #    render json: {
+  #      status: { code: 200, message: "Signed Up sucessfully", data: resource, authorization: "Bearer #{request.env['warden-jwt_auth.token']}"}
+  #    }
+  #  else
+  #    render json:{
+  #      status:{
+  #        message: "User could not be created",
+  #         errors: resource.errors.full_messages
+  #      }, status: :unprocessable_entity
+  #    }
+  #  end
+  # end
 end

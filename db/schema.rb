@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_28_104248) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_28_145716) do
   create_table "bookings", force: :cascade do |t|
     t.integer "event_id", null: false
     t.integer "ticket_id", null: false
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "customer_id", null: false
+    t.index ["customer_id"], name: "index_bookings_on_customer_id"
     t.index ["event_id"], name: "index_bookings_on_event_id"
     t.index ["ticket_id"], name: "index_bookings_on_ticket_id"
   end
@@ -27,6 +29,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_28_104248) do
     t.string "event_venue"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "organizer_id"
+    t.index ["organizer_id"], name: "index_events_on_organizer_id"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -56,5 +60,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_28_104248) do
 
   add_foreign_key "bookings", "events"
   add_foreign_key "bookings", "tickets"
+  add_foreign_key "bookings", "users", column: "customer_id"
+  add_foreign_key "events", "users", column: "organizer_id"
   add_foreign_key "tickets", "events"
 end
